@@ -1,26 +1,28 @@
 """Gera uma planilha Excel de conferência dos resumos (fica fora do Git).
 
-Recalcula os totais direto do parquet bruto, sem usar o processar_dados.py, e
-compara com os CSVs de dados/processados/. A planilha vai para dados/brutos/.
+Usa o mesmo recálculo do checar_dados.py e mostra o resultado em Excel, no
+padrão visual Norven. A planilha vai para dados/brutos/.
 
-Precisa da pasta ferramentas_locais/ (padrão visual Norven, fora do Git).
+Precisa da pasta ferramentas_locais/ (padrão visual Norven, fora do Git), por
+isso só roda localmente. No GitHub Actions a conferência é o checar_dados.py.
 
 Uso:  python conferir_dados.py   (rode antes o processar_dados.py)
 """
 
-import json
 import sys
 from datetime import date, datetime
-from pathlib import Path
 
-import duckdb
 import pandas as pd
 from openpyxl import Workbook
 
-PASTA_PROJETO = Path(__file__).resolve().parent
-PASTA_BRUTOS = PASTA_PROJETO / "dados" / "brutos"
-PASTA_PROCESSADOS = PASTA_PROJETO / "dados" / "processados"
-ARQUIVO_PARQUET = PASTA_BRUTOS / "empreendimento-geracao-distribuida.parquet"
+from checar_dados import (
+    PASTA_BRUTOS,
+    PASTA_PROCESSADOS,
+    PASTA_PROJETO,
+    abrir_bruta,
+    calcular,
+)
+
 PASTA_NORVEN = PASTA_PROJETO / "ferramentas_locais"
 LOGO = PASTA_NORVEN / "logo_norven.png"
 
@@ -31,66 +33,6 @@ SUBTITULO = "Painel de geração distribuída - dados abertos ANEEL"
 
 FORMATO_INTEIRO = "#,##0"
 FORMATO_DECIMAL = "#,##0.00"
-
-
-# ---------- Cálculos direto do bruto ----------
-
-def calcular(con):
-    """Recalcula, a partir do parquet, tudo o que a planilha vai mostrar."""
-    r = {}
-    r["linhas_lidas"] = con.execute("SELECT count(*) FROM bruta").fetchall()[0][0]
-
-    # Mesmas regras do processamento, escritas de novo de forma independente.
-    filtro_descarte = "MdaPotenciaInstaladaKW IS NULL OR MdaPotenciaInstaladaKW <= 0"
-    r["descartes"] = con.sql(f"""
-        SELECT SigUF AS uf, SigAgente AS distribuidora, CodEmpreendimento AS codigo,
-               DscFonteGeracao AS fonte, MdaPotenciaInstaladaKW AS potencia_kw,
-               DthAtualizaCadastralEmpreend AS data
-        FROM bruta WHERE {filtro_descarte} ORDER BY uf, codigo
-    """).df()
-    r["data_coringa"] = con.execute(f"""
-        SELECT count(*) FROM bruta
-        WHERE NOT ({filtro_descarte}) AND DthAtualizaCadastralEmpreend < DATE '2000-01-01'
-    """).fetchall()[0][0]
-    r["fonte_vazia"] = con.execute(
-        "SELECT count(*) FROM bruta WHERE DscFonteGeracao IS NULL"
-    ).fetchall()[0][0]
-
-    r["por_estado"] = con.sql(f"""
-        SELECT SigUF AS uf, any_value(NomRegiao) AS regiao,
-               count(*) AS lidas,
-               count(*) FILTER (WHERE {filtro_descarte}) AS descartadas,
-               sum(MdaPotenciaInstaladaKW) FILTER (WHERE NOT ({filtro_descarte})) AS potencia_kw
-        FROM bruta GROUP BY uf ORDER BY uf
-    """).df()
-    r["por_fonte"] = con.sql(f"""
-        SELECT coalesce(DscFonteGeracao, 'Não informada') AS fonte,
-               count(*) AS lidas,
-               count(*) FILTER (WHERE {filtro_descarte}) AS descartadas,
-               coalesce(sum(MdaPotenciaInstaladaKW) FILTER (WHERE NOT ({filtro_descarte})), 0) AS potencia_kw
-        FROM bruta GROUP BY fonte ORDER BY fonte
-    """).df()
-
-    # Códigos repetidos: exatamente iguais e também ignorando espaços e maiúsculas.
-    r["repetidos"] = con.sql("""
-        SELECT CodEmpreendimento AS codigo, count(*) AS ocorrencias
-        FROM bruta WHERE CodEmpreendimento IS NOT NULL
-        GROUP BY codigo HAVING count(*) > 1 ORDER BY ocorrencias DESC, codigo
-    """).df()
-    r["repetidos_normalizados"] = con.execute("""
-        SELECT count(*) FROM (
-            SELECT upper(trim(CodEmpreendimento)) FROM bruta
-            WHERE CodEmpreendimento IS NOT NULL GROUP BY 1 HAVING count(*) > 1)
-    """).fetchall()[0][0]
-    r["codigo_vazio"] = con.execute(
-        "SELECT count(*) FROM bruta WHERE CodEmpreendimento IS NULL"
-    ).fetchall()[0][0]
-
-    periodo, data_geracao = con.execute(
-        "SELECT any_value(AnmPeriodoReferencia), max(DatGeracaoConjuntoDados) FROM bruta"
-    ).fetchall()[0]
-    r["periodo"], r["data_geracao"] = periodo, data_geracao
-    return r
 
 
 # ---------- Montagem da planilha ----------
@@ -215,15 +157,13 @@ def aba_repetidos(wb, nx, repetidos):
 
 
 def main():
-    for arquivo in (ARQUIVO_PARQUET, PASTA_PROCESSADOS / "por_estado.csv", LOGO):
+    for arquivo in (PASTA_PROCESSADOS / "por_estado.csv", LOGO):
         if not arquivo.exists():
             raise FileNotFoundError(f"Falta {arquivo.relative_to(PASTA_PROJETO)}.")
     sys.path.insert(0, str(PASTA_NORVEN))
     import norven_xlsx as nx
 
-    con = duckdb.connect()
-    con.execute(f"CREATE VIEW bruta AS SELECT * FROM read_parquet('{ARQUIVO_PARQUET.as_posix()}')")
-    r = calcular(con)
+    r = calcular(abrir_bruta())
     resumo_estado = pd.read_csv(PASTA_PROCESSADOS / "por_estado.csv")
     resumo_fonte = pd.read_csv(PASTA_PROCESSADOS / "por_fonte.csv")
 
