@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dados brutos baixados da ANEEL (grandes, nao versionar)
+dados/brutos/
