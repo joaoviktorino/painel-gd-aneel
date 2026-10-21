@@ -1,0 +1,9 @@
+{
+  "fonte": "ANEEL - Relação de empreendimentos de Mini e Micro Geração Distribuída",
+  "licenca": "ODbL",
+  "url_download": "https://dadosabertos.aneel.gov.br/dataset/5e0fafd2-21b9-4d5b-b622-40438d40aba2/resource/cd29f6eb-e08d-4db7-b6fb-ed6e3b682d27/download/empreendimento-geracao-distribuida.parquet",
+  "data_download_utc": "2026-10-21T20:22:05+00:00",
+  "ultima_atualizacao_portal_utc": "2026-10-10T05:55:44.031104",
+  "tamanho_bytes": 106433551,
+  "numero_linhas": 4666785
+}
