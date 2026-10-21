@@ -1,0 +1,58 @@
+# Baixa a base de GD da ANEEL toda semana, gera os resumos, confere e publica.
+name: Atualizar dados da ANEEL
+
+on:
+  schedule:
+    # Toda segunda-feira às 09:00 UTC (06:00 em Brasília).
+    - cron: "0 9 * * 1"
+  # Permite rodar na mão pela aba Actions do GitHub.
+  workflow_dispatch:
+
+# Necessário para o robô do GitHub fazer commit dos resumos novos.
+permissions:
+  contents: write
+
+# Nunca roda duas atualizações ao mesmo tempo.
+concurrency:
+  group: atualizar-dados
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Copiar o repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Instalar as dependências
+        run: pip install -r requirements.txt
+
+      - name: Baixar a base da ANEEL
+        run: python baixar_dados.py
+
+      - name: Gerar os resumos
+        run: python processar_dados.py
+
+      # Se os resumos não baterem com a base bruta, o workflow para aqui e
+      # nada é publicado.
+      - name: Conferir os resumos
+        run: python checar_dados.py
+
+      - name: Publicar os resumos, se mudaram
+        run: |
+          if git diff --quiet -- 'dados/processados/por_*.csv' dados/processados/processamento.json; then
+            echo "A base da ANEEL não mudou. Nada a publicar."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados/processados/
+          git commit -m "Atualiza dados da ANEEL ($(date -u +%d/%m/%Y))"
+          git push

@@ -46,13 +46,17 @@ dados brutos (dados/brutos/, fora do Git)
 - `baixar_dados.py`: baixa o parquet da ANEEL para `dados/brutos/` e grava
   `dados/processados/metadados.json`.
 - `processar_dados.py`: gera os resumos CSV em `dados/processados/`.
-- `conferir_dados.py`: recalcula os totais direto do bruto e gera uma planilha
-  Excel de conferência em `dados/brutos/` (fora do Git). Usa o padrão visual
+- `conferir_dados.py`: usa o recálculo do `checar_dados.py` para gerar uma
+  planilha Excel de conferência em `dados/brutos/` (fora do Git). Só roda
+  localmente. Usa o padrão visual
   Norven de `ferramentas_locais/`, que também fica fora do Git por conter o
   logo da empresa.
 - `app.py`: painel Streamlit; lê só `dados/processados/`.
-- No futuro, um GitHub Actions vai rodar o download e o processamento
-  automaticamente. Por isso os scripts devem:
+- `checar_dados.py`: recalcula os totais direto do bruto e termina com erro se
+  os resumos não baterem. É a trava que impede publicar dados errados.
+- O GitHub Actions (`.github/workflows/atualizar-dados.yml`) roda toda segunda:
+  baixar → processar → checar → commit dos resumos, só se mudaram. Por isso os
+  scripts do pipeline devem:
   - usar caminhos relativos à pasta do projeto (a partir de `__file__`), nunca
     caminhos absolutos da máquina;
   - rodar do início ao fim sem nenhuma interação (sem `input()`, sem perguntas);
