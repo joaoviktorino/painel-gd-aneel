@@ -47,7 +47,7 @@ jobs:
 
       - name: Publicar os resumos, se mudaram
         run: |
-          if git diff --quiet -- 'dados/processados/por_*.csv' dados/processados/processamento.json; then
+          if git diff --quiet -- 'dados/processados/*.csv' dados/processados/processamento.json; then
             echo "A base da ANEEL não mudou. Nada a publicar."
             exit 0
           fi

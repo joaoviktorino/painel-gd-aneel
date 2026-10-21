@@ -19,8 +19,9 @@ PASTA_BRUTOS = PASTA_PROJETO / "dados" / "brutos"
 PASTA_PROCESSADOS = PASTA_PROJETO / "dados" / "processados"
 ARQUIVO_PARQUET = PASTA_BRUTOS / "empreendimento-geracao-distribuida.parquet"
 
-# Os CSVs guardam a potência com 2 casas decimais; aceitamos essa diferença.
-TOLERANCIA_KW = 0.01
+# Os CSVs guardam a potência com 2 casas decimais. Cada valor arredondado pode
+# errar no máximo 0,005 kW, então a soma de N linhas pode errar até N × 0,005.
+ERRO_ARREDONDAMENTO_KW = 0.005
 
 
 def abrir_bruta():
@@ -93,9 +94,15 @@ def calcular(con):
 
 
 def comparar(bruto, resumo, chave, nome):
-    """Compara um resumo (CSV) com o recálculo. Devolve a lista de problemas."""
+    """Compara um resumo (CSV) com o recálculo. Devolve a lista de problemas.
+
+    Se o resumo tiver a coluna 'linhas_somadas', a tolerância de potência
+    cresce com o número de valores arredondados que foram somados.
+    """
     bruto = bruto.assign(validas=bruto["lidas"] - bruto["descartadas"]).set_index(chave)
     resumo = resumo.set_index(chave)
+    if "linhas_somadas" not in resumo:
+        resumo = resumo.assign(linhas_somadas=1)
     problemas = []
     for item in sorted(set(bruto.index) ^ set(resumo.index)):
         onde = "só na base bruta" if item in bruto.index else "só no resumo"
@@ -107,7 +114,8 @@ def comparar(bruto, resumo, chave, nome):
                 f"{resumo.loc[item, 'quantidade']} no resumo"
             )
         diferenca_kw = abs(bruto.loc[item, "potencia_kw"] - resumo.loc[item, "potencia_kw"])
-        if diferenca_kw > TOLERANCIA_KW:
+        tolerancia_kw = ERRO_ARREDONDAMENTO_KW * (resumo.loc[item, "linhas_somadas"] + 1)
+        if diferenca_kw > tolerancia_kw:
             problemas.append(f"{nome} '{item}': potência difere em {diferenca_kw:.2f} kW")
     return problemas
 
@@ -131,6 +139,23 @@ def checar(r):
         problemas.append(
             f"por_mes.csv soma {por_mes['quantidade'].sum()} usinas; o esperado era {esperado_mes}"
         )
+
+    # O cubo alimenta os filtros do painel: somado por estado e por fonte, tem
+    # de dar o mesmo que a base bruta; somado por mês, o mesmo que por_mes.csv.
+    cubo = pd.read_csv(PASTA_PROCESSADOS / "cubo.csv")
+    for chave, nome, bruto in (("uf", "Cubo por estado", r["por_estado"]), ("fonte", "Cubo por fonte", r["por_fonte"])):
+        somado = cubo.groupby(chave, as_index=False).agg(
+            quantidade=("quantidade", "sum"),
+            potencia_kw=("potencia_kw", "sum"),
+            linhas_somadas=("quantidade", "size"),
+        )
+        problemas += comparar(bruto, somado, chave, nome)
+    cubo_mes = cubo.dropna(subset=["mes"]).groupby("mes")["quantidade"].sum()
+    if not cubo_mes.equals(por_mes.set_index("mes")["quantidade"]):
+        problemas.append("cubo.csv somado por mês não bate com por_mes.csv")
+    sem_mes = cubo.loc[cubo["mes"].isna(), "quantidade"].sum()
+    if sem_mes != r["data_coringa"]:
+        problemas.append(f"cubo.csv tem {sem_mes} usinas sem mês; a base tem {r['data_coringa']} com data coringa")
     return problemas
 
 

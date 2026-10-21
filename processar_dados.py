@@ -4,6 +4,10 @@ Lê o parquet bruto de dados/brutos/ e grava em dados/processados/:
   - por_estado.csv   quantidade e potência por estado (UF)
   - por_fonte.csv    quantidade e potência por fonte de geração
   - por_mes.csv      quantidade e potência por mês de conexão
+  - cubo.csv         quantidade e potência cruzando mês, estado, distribuidora,
+                     fonte, classe de consumo, porte e modalidade (usado pelos
+                     filtros do painel; a região vem de por_estado.csv)
+  - distribuidoras.csv  sigla e nome de cada distribuidora
   - processamento.json  data de referência e linhas descartadas
 
 Uso:  python processar_dados.py   (rode antes o baixar_dados.py)
@@ -36,10 +40,37 @@ SQL_BASE_VALIDA = """
         SigUF                                         AS uf,
         NomRegiao                                     AS regiao,
         coalesce(DscFonteGeracao, 'Não informada')    AS fonte,
+        SigAgente                                     AS distribuidora,
+        NomAgente                                     AS nome_distribuidora,
+        coalesce(nullif(trim(DscClasseConsumo), ''), 'Não informada')        AS classe,
+        coalesce(nullif(trim(DscPorte), ''), 'Não informado')                AS porte,
+        coalesce(nullif(trim(DscModalidadeHabilitado), ''), 'Não informada') AS modalidade,
         MdaPotenciaInstaladaKW                        AS potencia_kw,
         DthAtualizaCadastralEmpreend                  AS data_conexao
     FROM bruta
     WHERE MdaPotenciaInstaladaKW > 0
+"""
+
+# Resumo cruzado para os filtros do painel. Usinas com data coringa ficam com
+# mês vazio: entram nos totais, mas não na linha do tempo. A ordenação por mês
+# faz com que, a cada atualização, só as últimas linhas do arquivo mudem.
+SQL_CUBO = f"""
+    SELECT
+        CASE WHEN data_conexao >= DATE '{DATA_MINIMA_VALIDA}'
+             THEN CAST(date_trunc('month', data_conexao) AS DATE) END  AS mes,
+        uf, distribuidora, fonte, classe, porte, modalidade,
+        count(*)                     AS quantidade,
+        round(sum(potencia_kw), 2)   AS potencia_kw
+    FROM valida
+    GROUP BY ALL
+    ORDER BY mes NULLS FIRST, uf, distribuidora, fonte, classe, porte, modalidade
+"""
+
+SQL_DISTRIBUIDORAS = """
+    SELECT distribuidora, any_value(nome_distribuidora) AS nome
+    FROM valida
+    GROUP BY distribuidora
+    ORDER BY distribuidora
 """
 
 SQL_POR_ESTADO = """
@@ -111,6 +142,8 @@ def main():
     salvar_csv(con, SQL_POR_ESTADO, "por_estado.csv")
     salvar_csv(con, SQL_POR_FONTE, "por_fonte.csv")
     salvar_csv(con, SQL_POR_MES, "por_mes.csv")
+    salvar_csv(con, SQL_CUBO, "cubo.csv")
+    salvar_csv(con, SQL_DISTRIBUIDORAS, "distribuidoras.csv")
 
     # Informações para o app e para a conferência.
     periodo, data_geracao = con.execute(
