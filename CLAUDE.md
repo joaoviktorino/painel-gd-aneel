@@ -23,6 +23,17 @@ migração do sistema SISGD para o sistema MMGD. Os meses posteriores à migraç
 podem estar subestimados (registros ainda não carregados). O painel deve exibir
 esse aviso.
 
+### Observações sobre as colunas
+
+- A base não tem coluna com a data de conexão. Usamos `DthAtualizaCadastralEmpreend`
+  (data da última atualização cadastral) como aproximação do mês de conexão.
+- Datas de 01/01/1900 são valores coringa e ficam fora do resumo mensal.
+- Linhas com `MdaPotenciaInstaladaKW` <= 0 são descartadas de todos os resumos.
+- `CodSubGrupoTarifario` e `SigModalidadeEmpreendimento` estão sempre vazias
+  (deixaram de existir no sistema MMGD).
+- `NumCPFCNPJ` e `NomTitularEmpreendimento` identificam titulares: nunca levar
+  para `dados/processados/`.
+
 ## Arquitetura
 
 ```
