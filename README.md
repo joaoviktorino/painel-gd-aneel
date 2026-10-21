@@ -6,13 +6,20 @@ propriedades rurais e indústrias e conectadas à rede das distribuidoras.
 
 O painel mostra:
 
-- total de usinas, potência instalada e tamanho médio por usina;
-- destaques calculados a partir dos números (participação da energia solar,
-  concentração por estado, estados com usinas maiores, efeito da Lei 14.300);
-- potência acumulada ao longo do tempo e participação por região;
-- ranking por estado (potência, número de usinas ou tamanho médio);
-- novas conexões por mês, com o período de suspensão da base destacado;
-- fontes além da energia solar.
+- total de usinas, potência instalada, potência dos últimos 12 meses e tamanho
+  médio por usina;
+- destaques escolhidos automaticamente: o painel testa várias regras no recorte
+  filtrado (fonte líder, concentração, tamanho médio, ritmo de conexões,
+  recorde, peso da minigeração) e mostra as que mais se destacam. Títulos e
+  conclusões mudam conforme os números;
+- novas conexões por mês, com a suspensão da base e os meses ainda incompletos
+  marcados (detectados pelos próprios dados);
+- potência acumulada e rankings por região, estado, distribuidora, fonte,
+  classe de consumo, porte e modalidade.
+
+**Tudo é filtrável:** pela barra lateral, clicando numa barra de qualquer
+gráfico (clique de novo para desfazer) ou arrastando no gráfico mensal para
+escolher o período.
 
 Os dados são atualizados automaticamente toda semana pelo GitHub Actions.
 
@@ -29,7 +36,7 @@ ANEEL (parquet, ~100 MB)
 | Arquivo | O que faz |
 |---|---|
 | `baixar_dados.py` | Baixa a base da ANEEL e grava `metadados.json` com a data do download e da última atualização do portal. |
-| `processar_dados.py` | Gera `por_estado.csv`, `por_fonte.csv`, `por_mes.csv` e `processamento.json`. Recusa gravar CPF/CNPJ, nome do titular ou CEP. |
+| `processar_dados.py` | Gera `cubo.csv` (resumo cruzado usado pelos filtros), `por_estado.csv`, `por_fonte.csv`, `por_mes.csv`, `distribuidoras.csv` e `processamento.json`. Recusa gravar CPF/CNPJ, nome do titular ou CEP. |
 | `checar_dados.py` | Recalcula os totais de forma independente e termina com erro se os resumos não baterem. |
 | `conferir_dados.py` | Gera uma planilha Excel de conferência (uso local, precisa de arquivos que não estão no repositório). |
 | `app.py` | O painel. Cores e fontes em `.streamlit/config.toml`. |
