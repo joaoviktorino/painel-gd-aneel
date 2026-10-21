@@ -21,6 +21,10 @@ ARQUIVO_PARQUET = (
 )
 PASTA_PROCESSADOS = PASTA_PROJETO / "dados" / "processados"
 
+# Colunas que identificam o titular. Nunca podem aparecer nos resumos, que vão
+# para o GitHub.
+COLUNAS_PROIBIDAS = {"numcpfcnpj", "nomtitularempreendimento", "codcep"}
+
 # Datas anteriores a esta são valores "coringa" (ex.: 01/01/1900), não datas reais.
 DATA_MINIMA_VALIDA = "2000-01-01"
 
@@ -73,6 +77,12 @@ SQL_POR_MES = f"""
 
 def salvar_csv(con, sql, nome_arquivo):
     """Roda uma consulta e grava o resultado como CSV em dados/processados/."""
+    colunas = {linha[0].lower() for linha in con.execute(f"DESCRIBE {sql}").fetchall()}
+    if colunas & COLUNAS_PROIBIDAS:
+        raise ValueError(
+            f"{nome_arquivo} teria dados pessoais ({', '.join(colunas & COLUNAS_PROIBIDAS)}). "
+            "Esses campos não podem ir para dados/processados/."
+        )
     destino = (PASTA_PROCESSADOS / nome_arquivo).as_posix()
     con.execute(f"COPY ({sql}) TO '{destino}' (HEADER, DELIMITER ',')")
     linhas = con.execute(f"SELECT count(*) FROM ({sql})").fetchone()[0]
