@@ -221,3 +221,6 @@ __marimo__/
 
 # Dados brutos baixados da ANEEL (grandes, nao versionar)
 dados/brutos/
+
+# Ferramentas locais (padrao visual Norven, com logo da empresa)
+ferramentas_locais/
