@@ -1,0 +1,28 @@
+# Tema "solar" do painel: âmbar sobre azul-marinho, com modo claro e escuro.
+
+[theme]
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+headingFontWeights = [700, 650, 600, 600, 500, 500]
+metricValueFontSize = "2rem"
+metricValueFontWeight = 700
+baseRadius = "0.75rem"
+showWidgetBorder = true
+linkUnderline = false
+
+[theme.light]
+primaryColor = "#B45309"
+backgroundColor = "#FBFAF7"
+secondaryBackgroundColor = "#F1EEE7"
+textColor = "#1C2333"
+borderColor = "#E4DFD3"
+linkColor = "#B45309"
+chartCategoricalColors = ["#D97706", "#1E3A8A", "#0F766E", "#B91C1C", "#7C3AED", "#64748B"]
+
+[theme.dark]
+primaryColor = "#F59E0B"
+backgroundColor = "#0B1220"
+secondaryBackgroundColor = "#141D2F"
+textColor = "#E8ECF3"
+borderColor = "#243049"
+linkColor = "#FBBF24"
+chartCategoricalColors = ["#F59E0B", "#60A5FA", "#2DD4BF", "#F87171", "#A78BFA", "#94A3B8"]
