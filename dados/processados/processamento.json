@@ -1,9 +1,9 @@
 {
   "periodo_referencia": "11/2026",
-  "data_geracao_conjunto": "2026-11-01",
+  "data_geracao_conjunto": "2026-11-08",
   "data_conexao_mais_recente": "2026-10-05",
-  "linhas_lidas": 4735811,
-  "linhas_validas": 4735805,
+  "linhas_lidas": 4735908,
+  "linhas_validas": 4735902,
   "descartes": [
     {
       "motivo": "Potência instalada nula, zero ou negativa",
@@ -13,7 +13,7 @@
     {
       "motivo": "Data de conexão anterior a 2000-01-01 (valor coringa)",
       "afeta": "somente por_mes.csv",
-      "linhas": 68
+      "linhas": 69
     }
   ]
 }

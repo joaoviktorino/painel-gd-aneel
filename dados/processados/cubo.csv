@@ -1,5 +1,6 @@
 mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 ,SC,CEJAMA,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,7,30.34
+,SC,CEPRAG,Radiação solar,Rural,Microgeracao,Auto consumo remoto,1,39.84
 ,SC,CERGAL,Radiação solar,Rural,Microgeracao,Auto consumo remoto,1,4.08
 ,SC,CERPALO,Radiação solar,Comercial,Microgeracao,Auto consumo remoto,3,35.0
 ,SC,CERPALO,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,16.94
@@ -2231,7 +2232,6 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2017-03-01,SC,CELESC,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,4,26.88
 2017-03-01,SC,CELESC,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,22,91.12
 2017-03-01,SE,SULGIPE,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,1,3.0
-2017-03-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,1,1.28
 2017-03-01,SP,CPFL JAGUARI,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,2.0
 2017-03-01,SP,CPFL-PAULISTA,Radiação solar,Comercial,Microgeracao,Auto consumo remoto,2,18.82
 2017-03-01,SP,CPFL-PAULISTA,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,11,165.02
@@ -9083,7 +9083,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2019-06-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Auto consumo remoto,5,56.42
 2019-06-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Geracao na propria UC,4,23.43
 2019-06-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,1,6.0
-2019-06-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,4,105.1
+2019-06-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,4,105.14
 2019-06-01,RS,CERILUZ,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,1,28.65
 2019-06-01,RS,CERILUZ,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,1,2.64
 2019-06-01,RS,CERILUZ,Radiação solar,Rural,Microgeracao,Geracao na propria UC,2,62.5
@@ -20139,7 +20139,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2021-03-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Auto consumo remoto,4,147.4
 2021-03-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Geracao na propria UC,16,133.65
 2021-03-01,RS,CERFOX,Radiação solar,Comercial,Microgeracao,Auto consumo remoto,2,33.0
-2021-03-01,RS,CERFOX,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,2,119.81
+2021-03-01,RS,CERFOX,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,2,119.82
 2021-03-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,2,62.9
 2021-03-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,6,23.4
 2021-03-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,7,390.0
@@ -26693,7 +26693,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2022-01-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Auto consumo remoto,5,52.41
 2022-01-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Geracao na propria UC,12,142.51
 2022-01-01,RS,CERFOX,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,15.0
-2022-01-01,RS,CERFOX,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,1,69.8
+2022-01-01,RS,CERFOX,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,1,69.76
 2022-01-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,2,8.9
 2022-01-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Auto consumo remoto,2,36.6
 2022-01-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,6,156.7
@@ -29655,7 +29655,6 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2022-05-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Compartilhada,1,51.0
 2022-05-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,18,74.59
 2022-05-01,SC,CEPRAG,Radiação solar,Rural,Microgeracao,Auto consumo remoto,1,5.0
-2022-05-01,SC,CEPRAG,Radiação solar,Rural,Microgeracao,Compartilhada,1,8.8
 2022-05-01,SC,CERAL ANITÁPOLIS,Radiação solar,Rural,Microgeracao,Geracao na propria UC,1,5.0
 2022-05-01,SC,CERBRANORTE,Radiação solar,Comercial,Microgeracao,Auto consumo remoto,1,8.0
 2022-05-01,SC,CERBRANORTE,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,40.0
@@ -34256,7 +34255,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2022-11-01,RS,CELETRO,Radiação solar,Rural,Minigeracao,Geracao na propria UC,1,144.0
 2022-11-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,4,21.8
 2022-11-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,3,24.1
-2022-11-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Auto consumo remoto,8,115.0
+2022-11-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Auto consumo remoto,8,114.97
 2022-11-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,6,173.5
 2022-11-01,RS,CERILUZ,Radiação solar,Residencial,Microgeracao,Condomínio,2,10.47
 2022-11-01,RS,CERILUZ,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,5,27.6
@@ -34470,7 +34469,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2022-11-01,SP,CEMIRIM,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,2,50.0
 2022-11-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,2,74.0
 2022-11-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Condomínio,1,4.08
-2022-11-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,23,127.7
+2022-11-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,22,118.7
 2022-11-01,SP,CEMIRIM,Radiação solar,Rural,Microgeracao,Auto consumo remoto,1,45.0
 2022-11-01,SP,CEMIRIM,Radiação solar,Rural,Microgeracao,Geracao na propria UC,4,107.04
 2022-11-01,SP,CERIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,10,38.34
@@ -35327,7 +35326,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2022-12-01,SP,CEDRI,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,2,20.0
 2022-12-01,SP,CEMIRIM,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,3,75.0
 2022-12-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,1,6.0
-2022-12-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Condomínio,6,65.38
+2022-12-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Condomínio,5,62.18
 2022-12-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,17,90.89
 2022-12-01,SP,CEMIRIM,Radiação solar,Rural,Microgeracao,Auto consumo remoto,3,158.0
 2022-12-01,SP,CEMIRIM,Radiação solar,Rural,Microgeracao,Geracao na propria UC,7,288.57
@@ -36963,7 +36962,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2023-02-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Compartilhada,1,20.47
 2023-02-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,6,24.58
 2023-02-01,SC,CEPRAG,Radiação solar,Rural,Microgeracao,Auto consumo remoto,1,36.0
-2023-02-01,SC,CEPRAG,Radiação solar,Rural,Microgeracao,Geracao na propria UC,1,6.54
+2023-02-01,SC,CEPRAG,Radiação solar,Rural,Microgeracao,Geracao na propria UC,2,16.44
 2023-02-01,SC,CERAL ANITÁPOLIS,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,1,12.15
 2023-02-01,SC,CERAL ANITÁPOLIS,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,1,3.2
 2023-02-01,SC,CERAL ANITÁPOLIS,Radiação solar,Rural,Microgeracao,Geracao na propria UC,4,189.9
@@ -38531,7 +38530,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2023-04-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Auto consumo remoto,5,111.4
 2023-04-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Geracao na propria UC,16,262.01
 2023-04-01,RS,CERFOX,Radiação solar,Comercial,Microgeracao,Auto consumo remoto,1,5.5
-2023-04-01,RS,CERFOX,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,2,81.1
+2023-04-01,RS,CERFOX,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,3,156.1
 2023-04-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,5,53.3
 2023-04-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,10,59.4
 2023-04-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Auto consumo remoto,8,166.3
@@ -38646,6 +38645,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2023-04-01,SC,CELESC,Radiação solar,Rural,Microgeracao,Auto consumo remoto,109,1783.31
 2023-04-01,SC,CELESC,Radiação solar,Rural,Microgeracao,Compartilhada,2,87.0
 2023-04-01,SC,CELESC,Radiação solar,Rural,Microgeracao,Geracao na propria UC,158,1914.06
+2023-04-01,SC,CEPRAG,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,60.0
 2023-04-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,1,3.0
 2023-04-01,SC,CERAL ANITÁPOLIS,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,1,20.0
 2023-04-01,SC,CERAL ANITÁPOLIS,Radiação solar,Rural,Microgeracao,Geracao na propria UC,3,54.1
@@ -43697,8 +43697,8 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2023-11-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Geracao na propria UC,12,104.05
 2023-11-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,2,13.9
 2023-11-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,3,20.5
-2023-11-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Auto consumo remoto,5,48.2
-2023-11-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,14,110.3
+2023-11-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Auto consumo remoto,6,51.85
+2023-11-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,13,106.6
 2023-11-01,RS,CERILUZ,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,11.0
 2023-11-01,RS,CERILUZ,Radiação solar,Rural,Microgeracao,Condomínio,5,87.33
 2023-11-01,RS,CERILUZ,Radiação solar,Rural,Microgeracao,Geracao na propria UC,6,31.33
@@ -48300,6 +48300,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2024-05-01,SC,CELESC,Radiação solar,Rural,Microgeracao,Compartilhada,1,50.0
 2024-05-01,SC,CELESC,Radiação solar,Rural,Microgeracao,Geracao na propria UC,135,681.01
 2024-05-01,SC,CEPRAG,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,14.62
+2024-05-01,SC,CEPRAG,Radiação solar,Comercial,Minigeracao,Geracao na propria UC,1,150.0
 2024-05-01,SC,CEPRAG,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,1,50.0
 2024-05-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,1,10.0
 2024-05-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,4,16.3
@@ -50579,8 +50580,8 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2024-08-01,RS,CERFOX,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,4.4
 2024-08-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,1,2.9
 2024-08-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,5,29.1
-2024-08-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Auto consumo remoto,4,40.7
-2024-08-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,18,278.4
+2024-08-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Auto consumo remoto,3,30.5
+2024-08-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,19,288.6
 2024-08-01,RS,CERILUZ,Radiação solar,Comercial,Microgeracao,Compartilhada,1,75.0
 2024-08-01,RS,CERILUZ,Radiação solar,Residencial,Microgeracao,Condomínio,2,19.6
 2024-08-01,RS,CERILUZ,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,2,14.76
@@ -51607,7 +51608,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2024-09-01,SP,CEMIRIM,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,30.0
 2024-09-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,3,64.0
 2024-09-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Condomínio,3,20.5
-2024-09-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,13,60.62
+2024-09-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,12,58.62
 2024-09-01,SP,CEMIRIM,Radiação solar,Rural,Microgeracao,Auto consumo remoto,1,30.0
 2024-09-01,SP,CEMIRIM,Radiação solar,Rural,Microgeracao,Geracao na propria UC,1,75.0
 2024-09-01,SP,CERIM,Radiação solar,Comercial,Microgeracao,Auto consumo remoto,1,3.0
@@ -64980,7 +64981,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2026-03-01,SC,CELESC,Radiação solar,Rural,Microgeracao,Auto consumo remoto,65,759.27
 2026-03-01,SC,CELESC,Radiação solar,Rural,Microgeracao,Geracao na propria UC,208,1722.1
 2026-03-01,SC,CEPRAG,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,2,10.0
-2026-03-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,2,6.81
+2026-03-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,1,3.3
 2026-03-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,11,55.14
 2026-03-01,SC,CEPRAG,Radiação solar,Rural,Microgeracao,Geracao na propria UC,4,20.0
 2026-03-01,SC,CEREJ,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,5,36.94
@@ -67612,7 +67613,7 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2026-08-01,SP,CEDRI,Radiação solar,Residencial,Microgeracao,Compartilhada,1,11.25
 2026-08-01,SP,CEDRI,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,4,18.0
 2026-08-01,SP,CEMIRIM,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,3,25.08
-2026-08-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,27,142.3
+2026-08-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,26,135.55
 2026-08-01,SP,CEMIRIM,Radiação solar,Rural,Microgeracao,Geracao na propria UC,4,43.5
 2026-08-01,SP,CERIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,30,156.12
 2026-08-01,SP,CERIM,Radiação solar,Rural,Microgeracao,Geracao na propria UC,1,60.0
@@ -67755,6 +67756,8 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2026-09-01,RS,CELETRO,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,6,23.7
 2026-09-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Auto consumo remoto,11,115.04
 2026-09-01,RS,CELETRO,Radiação solar,Rural,Microgeracao,Geracao na propria UC,27,156.5
+2026-09-01,RS,CERFOX,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,3,16.21
+2026-09-01,RS,CERFOX,Radiação solar,Rural,Microgeracao,Geracao na propria UC,10,62.6
 2026-09-01,RS,CERMISSÕES,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,1,7.5
 2026-09-01,RS,CERMISSÕES,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,7,30.26
 2026-09-01,RS,CERMISSÕES,Radiação solar,Rural,Microgeracao,Geracao na propria UC,6,24.15
@@ -67790,6 +67793,11 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2026-09-01,RS,,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,11.16
 2026-09-01,RS,,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,4,21.46
 2026-09-01,RS,,Radiação solar,Rural,Microgeracao,Geracao na propria UC,7,45.8
+2026-09-01,SC,CEPRAG,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,37.5
+2026-09-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,3,15.0
+2026-09-01,SC,CEPRAG,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,23,138.96
+2026-09-01,SC,CEPRAG,Radiação solar,Rural,Microgeracao,Auto consumo remoto,1,5.0
+2026-09-01,SC,CEPRAG,Radiação solar,Rural,Microgeracao,Geracao na propria UC,9,60.2
 2026-09-01,SC,CERAL ANITÁPOLIS,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,1,5.0
 2026-09-01,SC,CERAL ANITÁPOLIS,Radiação solar,Rural,Microgeracao,Geracao na propria UC,1,7.0
 2026-09-01,SC,CEREJ,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,12,56.0
@@ -67813,6 +67821,10 @@ mes,uf,distribuidora,fonte,classe,porte,modalidade,quantidade,potencia_kw
 2026-09-01,SE,SULGIPE,Radiação solar,Residencial,Microgeracao,Auto consumo remoto,4,27.0
 2026-09-01,SE,SULGIPE,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,25,154.86
 2026-09-01,SE,SULGIPE,Radiação solar,Rural,Microgeracao,Geracao na propria UC,1,4.5
+2026-09-01,SP,CEMIRIM,Radiação solar,Comercial,Microgeracao,Geracao na propria UC,1,5.0
+2026-09-01,SP,CEMIRIM,Radiação solar,Comercial,Minigeracao,Geracao na propria UC,1,100.0
+2026-09-01,SP,CEMIRIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,46,261.56
+2026-09-01,SP,CEMIRIM,Radiação solar,Serviço Público,Microgeracao,Geracao na propria UC,1,20.0
 2026-09-01,SP,CERIM,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,21,125.83
 2026-09-01,SP,CERIPa,Radiação solar,Industrial,Microgeracao,Geracao na propria UC,2,150.0
 2026-09-01,SP,CERIPa,Radiação solar,Residencial,Microgeracao,Geracao na propria UC,16,109.18
