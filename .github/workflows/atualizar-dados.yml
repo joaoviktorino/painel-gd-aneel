@@ -5,6 +5,10 @@ on:
   schedule:
     # Toda segunda-feira às 09:00 UTC (06:00 em Brasília).
     - cron: "0 9 * * 1"
+    # Segunda chance na terça: se o servidor da ANEEL estiver fora do ar na segunda,
+    # esta rodada refaz a atualização. Se a segunda deu certo, aqui só aparece
+    # "A base da ANEEL não mudou. Nada a publicar." e nada é publicado.
+    - cron: "0 9 * * 2"
   # Permite rodar na mão pela aba Actions do GitHub.
   workflow_dispatch:
 

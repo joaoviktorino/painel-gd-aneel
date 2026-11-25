@@ -9,6 +9,7 @@ Uso:  python baixar_dados.py
 import json
 import shutil
 import sys
+import time
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,7 +35,13 @@ URL_API_CKAN = (
 
 # Alguns servidores recusam pedidos sem identificação do programa.
 CABECALHOS = {"User-Agent": "painel-gd-aneel (script de download)"}
-TEMPO_LIMITE_SEGUNDOS = 300
+# Tempo máximo de espera por uma resposta do servidor (na conexão e a cada pedaço).
+TEMPO_LIMITE_SEGUNDOS = 60
+
+# O servidor da ANEEL às vezes não responde ao GitHub (em 16/11 e 23/11/2026 a
+# conexão simplesmente esgotou o tempo). Por isso o download tenta de novo: depois
+# da 1ª falha espera 30 s, depois da 2ª espera 2 min e depois da 3ª espera 5 min.
+ESPERAS_ENTRE_TENTATIVAS_SEGUNDOS = (30, 120, 300)
 
 
 def consultar_ckan():
@@ -50,6 +57,21 @@ def consultar_ckan():
     except Exception as erro:
         print(f"Aviso: não foi possível consultar a API CKAN ({erro}).")
         return {}
+
+
+def com_tentativas(funcao, esperas=ESPERAS_ENTRE_TENTATIVAS_SEGUNDOS):
+    """Roda `funcao()`; se der erro, espera e tenta de novo, até acabar as esperas.
+
+    `esperas` é a lista de pausas entre as tentativas. Com 3 pausas, são 4 tentativas
+    no total. Se a última também falhar, o erro sobe e o workflow fica vermelho.
+    """
+    for numero, espera in enumerate(esperas, start=1):
+        try:
+            return funcao()
+        except Exception as erro:
+            print(f"Tentativa {numero} falhou ({erro}). Nova tentativa em {espera} s.")
+            time.sleep(espera)
+    return funcao()
 
 
 def baixar_arquivo():
@@ -95,7 +117,7 @@ def salvar_metadados(info_ckan):
 
 def main():
     info_ckan = consultar_ckan()
-    baixar_arquivo()
+    com_tentativas(baixar_arquivo)
     salvar_metadados(info_ckan)
 
 
