@@ -46,6 +46,11 @@ dados brutos (dados/brutos/, fora do Git)
 - `baixar_dados.py`: baixa o parquet da ANEEL para `dados/brutos/` e grava
   `dados/processados/metadados.json`.
 - `processar_dados.py`: gera os resumos CSV em `dados/processados/`.
+- `atualizar_local.py` (e `atualizar.bat`, para dois cliques no Windows): faz no
+  computador do usuário o mesmo que o workflow (baixar, processar, checar e enviar os
+  resumos se mudaram). Existe porque o GitHub Actions não conseguiu acessar o servidor da
+  ANEEL em 16/11, 23/11 e 25/11/2026 (conexão esgotou o tempo), embora o site abra no
+  navegador do usuário.
 - `conferir_dados.py`: usa o recálculo do `checar_dados.py` para gerar uma
   planilha Excel de conferência em `dados/brutos/` (fora do Git). Só roda
   localmente. Usa o padrão visual
